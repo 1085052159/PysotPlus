@@ -5,6 +5,8 @@ conda activate pytorch
 export PYTHONPATH=/home/ubuntu/PycharmProjects/PysotPlus:$PYTHONPATH
 echo "init done"
 
+# the root path of configs
+base_config_path="../experiments"
 # train siamrpnpp and siamban sequentially
 # if you have more than one configs, please use "," to seperate them, just like the following
 config_files="siamrpn_r50_l234_dwxcorr/5_union_rpnpp_l234.yaml,siamban_r50_l234_dwxcorr/5_union_ban_l234.yaml"

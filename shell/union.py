@@ -190,32 +190,32 @@ class Union(object):
 
 
 if __name__ == '__main__':
-    # config_files = args.config_files.split(",")
-    # base_config_path = args.base_config_path
-    # names = args.names.split(",")
-    # vis = args.vis
-    # device_ids = args.device_ids
-    # num_proc = args.num_proc
-    # start_epoch = args.start_epoch
-    # port = args.port
-    # tracker_prefix = args.tracker_prefix
-    # train_py = args.train_py
-    # training = args.training
-    # testing = args.testing
-    # evaling = args.evaling
-    base_config_path = "../experiments"
-    config_files = ["mybackbone_2gpu_5_union/5_union_res50_mod_layer3_reg_cross_rpn.yaml"]
-    names = ["OTB100", "VOT2019", "UAV123"]
-    vis = ""
-    device_ids = "0"
-    num_proc = 2
-    start_epoch = 16
-    port = 2333
-    tracker_prefix = "ch*"
-    train_py = "train_debug.py"
-    training = True
-    testing = True
-    evaling = True
+    config_files = args.config_files.split(",")
+    base_config_path = args.base_config_path
+    names = args.names.split(",")
+    vis = args.vis
+    device_ids = args.device_ids
+    num_proc = args.num_proc
+    start_epoch = args.start_epoch
+    port = args.port
+    tracker_prefix = args.tracker_prefix
+    train_py = args.train_py
+    training = args.training
+    testing = args.testing
+    evaling = args.evaling
+    # base_config_path = "../experiments"
+    # config_files = ["mybackbone_2gpu_5_union/5_union_res50_mod_layer3_reg_cross_rpn.yaml"]
+    # names = ["OTB100", "VOT2019", "UAV123"]
+    # vis = ""
+    # device_ids = "0"
+    # num_proc = 2
+    # start_epoch = 16
+    # port = 2333
+    # tracker_prefix = "ch*"
+    # train_py = "train_debug.py"
+    # training = True
+    # testing = True
+    # evaling = True
 
     union = Union(config_files=config_files,
                   base_config_path=base_config_path,
