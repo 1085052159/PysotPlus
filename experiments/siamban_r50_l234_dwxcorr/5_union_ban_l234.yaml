@@ -61,6 +61,7 @@ TRACK:
 
 TRAIN:
     EPOCH: 20
+    LOC_LOSS_TYPE: "linear_iou"
     SNAPSHOT_DIR: "snapshots/5/snapshots_ban_l234"  # snapshots save path, relative path to the RESULTS_BASE_PATH
     LOG_DIR: "logs/5/logs_ban_l234" # training logs save path, relative path to the RESULTS_BASE_PATH
     START_EPOCH: 0
@@ -91,36 +92,43 @@ DATASET:
     - 'YOUTUBEBB'
     - 'COCO'
     - 'GOT10K'
+    - 'LASOT'
 
     VIDEOS_PER_EPOCH: -1
 
     VID:
         FRAME_RANGE: 100
-        NUM_USE: 110000 # 100000
+        NUM_USE: 100000 # 100000
         ROOT: "" # you should specify the img root
         ANNO: "" # you should specify the anno name and its absolute path
 
     YOUTUBEBB:
         FRAME_RANGE: 3
-        NUM_USE: 210000 # -1
+        NUM_USE: 200000 # -1
         ROOT: "" # you should specify the img root
         ANNO: "" # you should specify the anno name and its absolute path
 
     COCO:
         FRAME_RANGE: 1
-        NUM_USE: 60000 # -1
+        NUM_USE: 100000 # -1
         ROOT: "" # you should specify the img root
         ANNO: "" # you should specify the anno name and its absolute path
 
     DET:
-        FRAME_RANGE: 100 # 1
-        NUM_USE: 60000 # -1
+        FRAME_RANGE: 1 # 1
+        NUM_USE: 200000 # -1
         ROOT: ""
         ANNO: ""
 
     GOT10K:
         FRAME_RANGE: 100
-        NUM_USE: 160000
+        NUM_USE: 200000
+        ROOT: "" # you should specify the img root
+        ANNO: "" # you should specify the anno name and its absolute path
+
+    LASOT:
+        FRAME_RANGE: 100
+        NUM_USE: 200000
         ROOT: "" # you should specify the img root
         ANNO: "" # you should specify the anno name and its absolute path
 

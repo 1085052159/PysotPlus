@@ -13,7 +13,7 @@ from pysot.core.config import cfg
 from pysot.models.backbone import get_backbone
 from pysot.models.head import get_rpn_head, get_mask_head, get_refine_head
 from pysot.models.neck import get_neck
-from pysot.models.loss import select_cross_entropy_loss, weight_l1_loss
+from pysot.models.loss import select_cross_entropy_loss, weight_l1_loss, select_iou_loss
 
 
 class ModelBuilder(nn.Module):
@@ -128,7 +128,10 @@ class ModelBuilder(nn.Module):
         cls = self.log_softmax(cls)
         cls_loss = select_cross_entropy_loss(cls, label_cls)
         # loc: (N, 4k, h, w) label_loc: (N, 4, k, h, w) label_loc_weight: (N, k, h, w)
-        loc_loss = weight_l1_loss(loc, label_loc, label_loc_weight)
+        if cfg.TRAIN.LOC_LOSS_TYPE == "l1_loss":
+            loc_loss = weight_l1_loss(loc, label_loc, label_loc_weight)
+        else:
+            loc_loss = select_iou_loss(loc, label_loc, label_cls)
 
         outputs = {}
         outputs['total_loss'] = cfg.TRAIN.CLS_WEIGHT * cls_loss + \

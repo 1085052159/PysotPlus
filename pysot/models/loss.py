@@ -8,6 +8,8 @@ from __future__ import unicode_literals
 import torch
 import torch.nn.functional as F
 
+from pysot.models.iou_loss import linear_iou
+
 
 def get_cls_loss(pred, label, select):
     if len(select.size()) == 0 or \
@@ -41,3 +43,16 @@ def weight_l1_loss(pred_loc, label_loc, loss_weight):
     diff = diff.sum(dim=1).view(b, -1, sh, sw)
     loss = diff * loss_weight
     return loss.sum().div(b)
+
+
+def select_iou_loss(pred_loc, label_loc, label_cls):
+    label_cls = label_cls.reshape(-1)
+    pos = label_cls.data.eq(1).nonzero(as_tuple=False).squeeze().cuda()
+
+    pred_loc = pred_loc.permute(0, 2, 3, 1).reshape(-1, 4)
+    pred_loc = torch.index_select(pred_loc, 0, pos)
+
+    label_loc = label_loc.permute(0, 2, 3, 1).reshape(-1, 4)
+    label_loc = torch.index_select(label_loc, 0, pos)
+
+    return linear_iou(pred_loc, label_loc)

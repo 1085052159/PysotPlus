@@ -56,6 +56,7 @@ TRACK:
 
 TRAIN:
     EPOCH: 20
+    LOC_LOSS_TYPE: "l1_loss"
     SNAPSHOT_DIR: "snapshots/5/snapshots_rpnpp_l234"  # snapshots save path, relative path to the RESULTS_BASE_PATH
     LOG_DIR: "logs/5/logs_rpnpp_l234" # training logs save path, relative path to the RESULTS_BASE_PATH
     START_EPOCH: 0
